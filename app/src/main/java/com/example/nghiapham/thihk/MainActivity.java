@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
                 View addForm = getLayoutInflater().inflate(R.layout.activity_layout__add, null);
                 final EditText txtUser = addForm.findViewById(R.id.txtAdd);
                 Button btnAddUser = addForm.findViewById(R.id.btnAddUser);
+                Button btnCancelAdd = addForm.findViewById(R.id.btnCancelAdd);
+
                 buider.setView(addForm);
                 final AlertDialog dialog = buider.create();
                 dialog.show();
@@ -48,6 +50,13 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View view){
                         list.add(txtUser.getText()+"");
                         adapter.notifyDataSetChanged();
+                        dialog.cancel();
+                    }
+                });
+
+                btnCancelAdd.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
                         dialog.cancel();
                     }
                 });
@@ -70,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         View editForm = getLayoutInflater().inflate(R.layout.activity_layout_edit, null);
         final EditText txtEdit = editForm.findViewById(R.id.edEdit);
         Button btnEdit = editForm.findViewById(R.id.btnEdit);
+        Button btnCancelEdit = editForm.findViewById(R.id.btnCancelEdit);
 
         switch(item.getItemId()){
             case R.id.opEdit :
@@ -82,6 +92,12 @@ public class MainActivity extends AppCompatActivity {
                         list.set(info.position, txtEdit.getText()+"");
                         adapter.notifyDataSetChanged();
                         Toast.makeText(MainActivity.this, "Đã sửa", Toast.LENGTH_SHORT).show();
+                        dialog.cancel();
+                    }
+                });
+                btnCancelEdit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
                         dialog.cancel();
                     }
                 });
